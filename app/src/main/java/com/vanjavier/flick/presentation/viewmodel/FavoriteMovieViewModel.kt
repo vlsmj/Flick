@@ -13,7 +13,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class MovieViewModel @Inject constructor(
+class FavoriteMovieViewModel @Inject constructor(
     private val useCases: UseCases,
 ) : ViewModel() {
 
@@ -21,11 +21,11 @@ class MovieViewModel @Inject constructor(
         private set
 
     init {
-        getAllMovies()
+        getAllFavoriteMovies()
     }
 
-    private fun getAllMovies() {
-        useCases.getAllMoviesUseCase().onEach {
+    private fun getAllFavoriteMovies() {
+        useCases.getAllFavoriteMoviesUseCase().onEach {
             when (it) {
                 is Resource.Loading -> {
                     movieState.value = movieState.value.copy(data = it.data ?: mutableListOf(), isLoading = true)
@@ -40,19 +40,11 @@ class MovieViewModel @Inject constructor(
         }.launchIn(viewModelScope)
     }
 
-    fun favoriteMovie(title: String) {
-        viewModelScope.launch {
-            useCases.favoriteMovieUseCase(title)
-
-            getAllMovies()
-        }
-    }
-
     fun unFavoriteMovie(title: String) {
         viewModelScope.launch {
             useCases.unFavoriteMovieUseCase(title)
 
-            getAllMovies()
+            getAllFavoriteMovies()
         }
     }
 }

@@ -1,5 +1,8 @@
 package com.vanjavier.flick.data.remote.dto
 
+import com.vanjavier.flick.common.Constants.THUMBNAIL_SIZE
+import com.vanjavier.flick.common.Constants.THUMBNAIL_SIZE_FEATURED
+import com.vanjavier.flick.common.Genre
 import com.vanjavier.flick.domain.model.Movie
 
 data class MovieDto(
@@ -42,8 +45,16 @@ data class MovieDto(
 
 fun MovieDto.toMovie(): Movie {
     val title = trackName ?: ""
+    val thumbnailUrlFeatured = artworkUrl100?.replace("100x100bb", THUMBNAIL_SIZE_FEATURED) ?: ""
+    val thumbnailUrl = artworkUrl100?.replace("100x100bb", THUMBNAIL_SIZE) ?: ""
+    val genre = primaryGenreName ?: ""
+    val isFeatured = genre == Genre.SCI_FI_FANTASY.name
 
     return Movie(
-        title = title
+        title = title,
+        thumbnailUrlFeatured = thumbnailUrlFeatured,
+        thumbnailUrl = thumbnailUrl,
+        genre = genre,
+        isFeatured = isFeatured
     )
 }

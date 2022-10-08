@@ -29,19 +29,41 @@ class MovieRepositoryImpl @Inject constructor(
 
             emit(Resource.Loading(savedMovies))
 
-            val defaultMovies = api.getDefaultMovies().results.map {
-                it.toMovie()
+            // Fetch fresh data from server if database is empty.
+            if (savedMovies.isEmpty()) {
+                val defaultMovies = api.getDefaultMovies().results.map {
+                    it.toMovie()
+                }
+
+                movieDao.insertMovies(defaultMovies)
             }
 
-            // Delete saved movies and insert new movies fetched from the API.
-            movieDao.deleteAllMovies()
-            movieDao.insertMovies(defaultMovies)
-
+            // Returns saved movies from database to lessen API calls for demo purposes.
             emit(Resource.Success(movieDao.getAllMovies()))
         } catch (e: HttpException) {
             emit(Resource.Error(UiText.StringResource(R.string.error_exception_message)))
         } catch (e: IOException) {
             emit(Resource.Error(UiText.StringResource(R.string.error_io_exception_message)))
         }
+    }
+
+    override suspend fun getAllFavoriteMovies() = flow {
+        try {
+            val favoriteMovies = movieDao.getAllFavoriteMovies()
+
+            emit(Resource.Success(favoriteMovies))
+        } catch (e: HttpException) {
+            emit(Resource.Error(UiText.StringResource(R.string.error_exception_message)))
+        } catch (e: IOException) {
+            emit(Resource.Error(UiText.StringResource(R.string.error_io_exception_message)))
+        }
+    }
+
+    override suspend fun favoriteMovie(title: String) {
+        movieDao.favoriteMovie(title)
+    }
+
+    override suspend fun unFavoriteMovie(title: String) {
+        movieDao.unFavoriteMovie(title)
     }
 }
