@@ -10,7 +10,9 @@ interface MovieRepository {
 
     suspend fun getAllFavoriteMovies(): Flow<Resource<List<Movie>>>
 
-    suspend fun favoriteMovie(title: String)
+    suspend fun searchMovie(query: String): Flow<Resource<List<Movie>>>
 
-    suspend fun unFavoriteMovie(title: String)
+    suspend fun favoriteMovie(id: Int)
+
+    suspend fun unFavoriteMovie(id: Int)
 }

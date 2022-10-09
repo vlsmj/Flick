@@ -2,6 +2,7 @@ package com.vanjavier.flick.common.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Icon
 import androidx.compose.material.Text
@@ -22,6 +23,7 @@ import com.vanjavier.flick.ui.theme.Black
 fun TopBar(
     logo: Painter? = null,
     title: String? = "",
+    onNavigateToSearch: () -> Unit,
 ) {
     Row(verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceBetween,
@@ -54,6 +56,9 @@ fun TopBar(
 
         Icon(painter = painterResource(id = R.drawable.ic_baseline_search_24),
             contentDescription = "search",
-            tint = Color.White)
+            tint = Color.White,
+            modifier = Modifier.clickable {
+                onNavigateToSearch()
+            })
     }
 }

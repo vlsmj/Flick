@@ -12,15 +12,15 @@ class MovieDetailsViewModel @Inject constructor(
     private val useCases: UseCases,
 ) : ViewModel() {
 
-    fun favoriteMovie(title: String) {
+    fun favoriteMovie(id: Int) {
         viewModelScope.launch {
-            useCases.favoriteMovieUseCase(title)
+            useCases.favoriteMovieUseCase(id)
         }
     }
 
-    fun unFavoriteMovie(title: String) {
+    fun unFavoriteMovie(id: Int) {
         viewModelScope.launch {
-            useCases.unFavoriteMovieUseCase(title)
+            useCases.unFavoriteMovieUseCase(id)
         }
     }
 }

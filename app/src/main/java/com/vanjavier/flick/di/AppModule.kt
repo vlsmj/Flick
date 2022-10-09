@@ -79,6 +79,7 @@ object AppModule {
         getAllMoviesUseCase = GetAllMoviesUseCase(movieRepository),
         getAllFavoriteMoviesUseCase = GetAllFavoriteMoviesUseCase(movieRepository),
         favoriteMovieUseCase = FavoriteMovieUseCase(movieRepository),
-        unFavoriteMovieUseCase = UnFavoriteMovieUseCase(movieRepository)
+        unFavoriteMovieUseCase = UnFavoriteMovieUseCase(movieRepository),
+        searchMoviesUseCase = SearchMoviesUseCase(movieRepository)
     )
 }

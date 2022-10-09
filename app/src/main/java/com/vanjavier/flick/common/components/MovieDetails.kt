@@ -38,7 +38,7 @@ fun MovieDetails(
             .verticalScroll(scrollState)
             .padding(8.dp)) {
             Image(painterResource(id = R.drawable.ic_logo), contentDescription = "logo",
-                modifier = Modifier.size(width = 44.dp, height = 18.dp))
+                modifier = Modifier.size(width = 44.dp, height = 20.dp))
             Row(verticalAlignment = Alignment.CenterVertically,
                 modifier = Modifier.fillMaxWidth()
             ) {
@@ -53,26 +53,28 @@ fun MovieDetails(
                     IconText(icon = painterResource(id = R.drawable.ic_baseline_star_favorite_24), text = "Favorite",
                         modifier = Modifier.weight(0.2f)) {
                         movieDetails.value = movieDetails.value.copy(isFavorite = false)
-                        viewModel.unFavoriteMovie(title)
+                        viewModel.unFavoriteMovie(id)
                     }
                 } else {
                     IconText(icon = painterResource(id = R.drawable.ic_baseline_star_unfavorite_24), text = "Favorite",
                         modifier = Modifier.weight(0.2f)) {
                         movieDetails.value = movieDetails.value.copy(isFavorite = true)
-                        viewModel.favoriteMovie(title)
+                        viewModel.favoriteMovie(id)
                     }
                 }
             }
+            Spacer(modifier = Modifier.height(4.dp))
             Row(verticalAlignment = Alignment.CenterVertically) {
-                Text(text = releaseYear, fontSize = 13.sp)
+                Text(text = releaseYear, fontSize = 12.sp)
                 Spacer(modifier = Modifier.width(4.dp))
                 BorderedBoxText(advisoryRating)
                 Spacer(modifier = Modifier.width(4.dp))
-                Text(text = genre, fontSize = 13.sp)
+                Text(text = genre, fontSize = 12.sp)
                 Spacer(modifier = Modifier.width(4.dp))
                 BorderedBoxText(country)
                 Spacer(modifier = Modifier.width(4.dp))
-                Text(text = runtime, fontSize = 13.sp)
+                Text(text = runtime, fontSize = 12.sp)
+                Text(text = " - $price", fontSize = 12.sp)
             }
             Spacer(modifier = Modifier.height(8.dp))
             Text(text = longDescription,

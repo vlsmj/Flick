@@ -38,7 +38,7 @@ class LoadingActivity : ComponentActivity() {
                             progress = {
                                 lottieProgress
                             },
-                            Modifier.size(256.dp)
+                            Modifier.size(216.dp)
                         )
                     }
                     LaunchedEffect(Unit) {

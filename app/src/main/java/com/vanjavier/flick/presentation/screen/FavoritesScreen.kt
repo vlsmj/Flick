@@ -20,6 +20,7 @@ import com.vanjavier.flick.presentation.viewmodel.FavoriteMovieViewModel
 fun FavoritesScreen(
     viewModel: FavoriteMovieViewModel = hiltViewModel(),
     onNavigateToDetails: (movie: Movie) -> Unit,
+    onNavigateToSearch: () -> Unit,
 ) {
     // Listen to android lifecycle
     // Update if added to Favorites or not on screen resume
@@ -32,7 +33,9 @@ fun FavoritesScreen(
     val state = viewModel.movieState.value
 
     Column(modifier = Modifier.fillMaxSize()) {
-        TopBar(title = "Favorites")
+        TopBar(title = "Favorites") {
+            onNavigateToSearch()
+        }
 
         if (state.data.isNotEmpty()) {
             LazyVerticalGrid(columns = GridCells.Fixed(3),
@@ -49,7 +52,7 @@ fun FavoritesScreen(
                         },
                         onStarClick = {
                             if (it.isFavorite) {
-                                viewModel.unFavoriteMovie(it.title)
+                                viewModel.unFavoriteMovie(it.id)
                             }
                         })
                 }

@@ -7,6 +7,7 @@ import com.vanjavier.flick.common.extensions.formatDateTime
 import com.vanjavier.flick.common.extensions.getDateYear
 import com.vanjavier.flick.common.extensions.toHourAndMinute
 import com.vanjavier.flick.domain.model.Movie
+import java.util.*
 import kotlin.random.Random
 
 data class MovieDto(
@@ -58,6 +59,7 @@ fun MovieDto.toMovie(): Movie {
     val country = country ?: ""
     val longDescription = longDescription ?: ""
     val runtime = trackTimeMillis?.toLong()?.toHourAndMinute() ?: "0h 0m"
+    val price = "${Currency.getInstance(currency).symbol}$trackPrice"
     val artistName = artistName ?: ""
     val releaseDate = releaseDate?.formatDateTime() ?: ""
     val releaseYear = this.releaseDate?.getDateYear() ?: ""
@@ -75,6 +77,7 @@ fun MovieDto.toMovie(): Movie {
         country = country,
         longDescription = longDescription,
         runtime = runtime,
+        price = price,
         artistName = artistName,
         releaseDate = releaseDate,
         releaseYear = releaseYear

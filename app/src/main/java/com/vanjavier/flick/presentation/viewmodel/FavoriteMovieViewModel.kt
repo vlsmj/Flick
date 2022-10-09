@@ -40,9 +40,9 @@ class FavoriteMovieViewModel @Inject constructor(
         }.launchIn(viewModelScope)
     }
 
-    fun unFavoriteMovie(title: String) {
+    fun unFavoriteMovie(id: Int) {
         viewModelScope.launch {
-            useCases.unFavoriteMovieUseCase(title)
+            useCases.unFavoriteMovieUseCase(id)
 
             getAllFavoriteMovies()
         }

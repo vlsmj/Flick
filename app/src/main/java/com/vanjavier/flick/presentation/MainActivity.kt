@@ -88,13 +88,17 @@ class MainActivity : ComponentActivity() {
                                         putSerializable(KEY_MOVIE, movie)
                                     }
                                 }
-                                TopBar(logo = painterResource(id = R.drawable.ic_logo))
+                                TopBar(logo = painterResource(id = R.drawable.ic_logo)) {
+                                    openActivity(SearchActivity::class.java)
+                                }
                             }
                             composable(Screen.FavoritesScreen.route) {
-                                FavoritesScreen { movie ->
+                                FavoritesScreen(onNavigateToDetails = { movie ->
                                     openActivity(MovieDetailsActivity::class.java) {
                                         putSerializable(KEY_MOVIE, movie)
                                     }
+                                }) {
+                                    openActivity(SearchActivity::class.java)
                                 }
                             }
                         }
