@@ -47,7 +47,6 @@ fun TopBar(
 
             title?.let {
                 Text(text = it,
-                    color = Color.White,
                     fontSize = 18.sp,
                     fontWeight = FontWeight.Bold)
             }

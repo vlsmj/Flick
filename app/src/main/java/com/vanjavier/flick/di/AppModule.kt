@@ -3,6 +3,7 @@ package com.vanjavier.flick.di
 import android.app.Application
 import androidx.room.Room
 import com.vanjavier.flick.common.Constants.BASE_URL
+import com.vanjavier.flick.common.PrefManager
 import com.vanjavier.flick.data.datasource.MovieDao
 import com.vanjavier.flick.data.datasource.MovieDatabase
 import com.vanjavier.flick.data.remote.ITunesApi
@@ -61,6 +62,13 @@ object AppModule {
     fun provideMovieDao(db: MovieDatabase): MovieDao {
         return db.movieDao()
     }
+
+    /**
+     * Provides reference for PrefManager for small local data saving.
+     */
+    @Provides
+    @Singleton
+    fun providesPrefManager(application: Application): PrefManager = PrefManager(application)
 
     /**
      * Provides all the uses cases to be used in ViewModels.

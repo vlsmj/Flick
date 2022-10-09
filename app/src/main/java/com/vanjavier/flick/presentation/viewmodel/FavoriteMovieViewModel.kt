@@ -24,7 +24,7 @@ class FavoriteMovieViewModel @Inject constructor(
         getAllFavoriteMovies()
     }
 
-    private fun getAllFavoriteMovies() {
+    fun getAllFavoriteMovies() {
         useCases.getAllFavoriteMoviesUseCase().onEach {
             when (it) {
                 is Resource.Loading -> {

@@ -20,11 +20,7 @@ class MovieViewModel @Inject constructor(
     var movieState = mutableStateOf(MovieState())
         private set
 
-    init {
-        getAllMovies()
-    }
-
-    private fun getAllMovies() {
+    fun getAllMovies() {
         useCases.getAllMoviesUseCase().onEach {
             when (it) {
                 is Resource.Loading -> {

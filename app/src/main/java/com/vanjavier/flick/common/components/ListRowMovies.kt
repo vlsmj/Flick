@@ -22,7 +22,6 @@ fun ListRowMovies(
     onStarClick: (movie: Movie) -> Unit,
 ) {
     Text(text = category,
-        color = Color.White,
         fontWeight = FontWeight.Bold,
         modifier = Modifier.padding(start = 8.dp, top = 10.dp, end = 8.dp))
     LazyRow(contentPadding = PaddingValues(horizontal = 4.dp),
