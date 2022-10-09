@@ -8,6 +8,8 @@ buildscript {
         coil_version = '2.2.0'
         compose_viewmodel_version = '2.6.0-alpha01'
         compose_navigation_version = '2.5.1'
+        composer_constraintlayout_version = '1.0.1'
+        lottie_version = '5.2.0'
     }
 
     dependencies {

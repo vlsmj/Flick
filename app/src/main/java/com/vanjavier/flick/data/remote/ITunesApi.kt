@@ -6,6 +6,6 @@ import retrofit2.http.GET
 
 interface ITunesApi {
 
-    @GET("search?term=a&media=movie&;all")
+    @GET("search?term=star&media=movie&;all")
     suspend fun getDefaultMovies(): WrapperListDto<MovieDto>
 }

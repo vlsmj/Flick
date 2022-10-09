@@ -7,4 +7,10 @@ import kotlinx.coroutines.flow.Flow
 interface MovieRepository {
 
     suspend fun getAllMovies(): Flow<Resource<List<Movie>>>
+
+    suspend fun getAllFavoriteMovies(): Flow<Resource<List<Movie>>>
+
+    suspend fun favoriteMovie(title: String)
+
+    suspend fun unFavoriteMovie(title: String)
 }

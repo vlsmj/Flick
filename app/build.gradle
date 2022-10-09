@@ -83,6 +83,9 @@ dependencies {
     implementation "io.coil-kt:coil-compose:$coil_version"
     implementation "io.coil-kt:coil-svg:$coil_version"
 
+    /* Lottie */
+    implementation "com.airbnb.android:lottie-compose:$lottie_version"
+
     /* OkHttp */
     // define a BOM and its version
     implementation(platform("com.squareup.okhttp3:okhttp-bom:$okhttp_version"))
@@ -94,6 +97,9 @@ dependencies {
     /* Retrofit */
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
     implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
+
+    /* Compose ConstraintLayout */
+    implementation "androidx.constraintlayout:constraintlayout-compose:$composer_constraintlayout_version"
 
     /* Compose dependencies */
     implementation "androidx.navigation:navigation-compose:$compose_navigation_version"

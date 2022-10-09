@@ -7,8 +7,7 @@ import com.vanjavier.flick.data.datasource.MovieDao
 import com.vanjavier.flick.data.datasource.MovieDatabase
 import com.vanjavier.flick.data.remote.ITunesApi
 import com.vanjavier.flick.domain.repository.MovieRepository
-import com.vanjavier.flick.domain.usecase.GetAllMoviesUseCase
-import com.vanjavier.flick.domain.usecase.UseCases
+import com.vanjavier.flick.domain.usecase.*
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -69,6 +68,9 @@ object AppModule {
     @Provides
     @Singleton
     fun provideUseCases(movieRepository: MovieRepository) = UseCases(
-        getAllMoviesUseCase = GetAllMoviesUseCase(movieRepository)
+        getAllMoviesUseCase = GetAllMoviesUseCase(movieRepository),
+        getAllFavoriteMoviesUseCase = GetAllFavoriteMoviesUseCase(movieRepository),
+        favoriteMovieUseCase = FavoriteMovieUseCase(movieRepository),
+        unFavoriteMovieUseCase = UnFavoriteMovieUseCase(movieRepository)
     )
 }

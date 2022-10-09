@@ -5,6 +5,11 @@ import androidx.room.PrimaryKey
 
 @Entity
 data class Movie(
-    @PrimaryKey(autoGenerate = true) val id: Int? = null,
+    @PrimaryKey
     val title: String,
+    val thumbnailUrlFeatured: String,
+    val thumbnailUrl: String,
+    val genre: String,
+    var isFavorite: Boolean = false,
+    var isFeatured: Boolean = false,
 )
