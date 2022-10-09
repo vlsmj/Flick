@@ -11,7 +11,7 @@ import javax.inject.Inject
 class UnFavoriteMovieUseCase @Inject constructor(
     private val repository: MovieRepository,
 ) {
-    suspend operator fun invoke(title: String) {
-        repository.unFavoriteMovie(title)
+    suspend operator fun invoke(id: Int) {
+        repository.unFavoriteMovie(id)
     }
 }

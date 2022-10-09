@@ -59,11 +59,27 @@ class MovieRepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun favoriteMovie(title: String) {
-        movieDao.favoriteMovie(title)
+    override suspend fun favoriteMovie(id: Int) {
+        movieDao.favoriteMovie(id)
     }
 
-    override suspend fun unFavoriteMovie(title: String) {
-        movieDao.unFavoriteMovie(title)
+    override suspend fun unFavoriteMovie(id: Int) {
+        movieDao.unFavoriteMovie(id)
+    }
+
+    override suspend fun searchMovie(query: String) = flow {
+        try {
+            emit(Resource.Loading())
+
+            val searchedMovies = api.searchMovies(query).results.map {
+                it.toMovie()
+            }
+
+            emit(Resource.Success(searchedMovies))
+        } catch (e: HttpException) {
+            emit(Resource.Error(UiText.StringResource(R.string.error_exception_message)))
+        } catch (e: IOException) {
+            emit(Resource.Error(UiText.StringResource(R.string.error_io_exception_message)))
+        }
     }
 }

@@ -5,4 +5,5 @@ data class UseCases(
     val getAllFavoriteMoviesUseCase: GetAllFavoriteMoviesUseCase,
     val favoriteMovieUseCase: FavoriteMovieUseCase,
     val unFavoriteMovieUseCase: UnFavoriteMovieUseCase,
+    val searchMoviesUseCase: SearchMoviesUseCase,
 )

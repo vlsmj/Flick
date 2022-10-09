@@ -4,6 +4,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -54,6 +55,16 @@ fun HomeScreen(
         DRAMA,
         ROMANCE
     )
+
+    if (state.isLoading) {
+        Box(modifier = Modifier.fillMaxSize(),
+            contentAlignment = Alignment.Center) {
+            CircularProgressIndicator(
+                modifier = Modifier
+                    .size(24.dp)
+            )
+        }
+    }
 
     if (state.data.isNotEmpty()) {
         val movies = state.data
@@ -109,11 +120,11 @@ fun HomeScreen(
 
                         if (featuredMovie.isFavorite) {
                             IconText(icon = painterResource(id = R.drawable.ic_baseline_star_favorite_24), text = "Favorite") {
-                                viewModel.unFavoriteMovie(featuredMovie.title)
+                                viewModel.unFavoriteMovie(featuredMovie.id)
                             }
                         } else {
                             IconText(icon = painterResource(id = R.drawable.ic_baseline_star_unfavorite_24), text = "Favorite") {
-                                viewModel.favoriteMovie(featuredMovie.title)
+                                viewModel.favoriteMovie(featuredMovie.id)
                             }
                         }
 
@@ -138,9 +149,9 @@ fun HomeScreen(
                         onNavigateToDetails(it)
                     }, onStarClick = {
                         if (it.isFavorite) {
-                            viewModel.unFavoriteMovie(it.title)
+                            viewModel.unFavoriteMovie(it.id)
                         } else {
-                            viewModel.favoriteMovie(it.title)
+                            viewModel.favoriteMovie(it.id)
                         }
                     })
                 }

@@ -17,6 +17,7 @@ data class Movie(
     val country: String,
     val longDescription: String,
     val runtime: String,
+    val price: String,
     val artistName: String,
     val releaseDate: String,
     val releaseYear: String,
