@@ -8,17 +8,27 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.navigation.NavController
+import androidx.lifecycle.Lifecycle
+import com.vanjavier.flick.common.components.ComposableLifecycle
 import com.vanjavier.flick.common.components.EmptyListPlaceholder
 import com.vanjavier.flick.common.components.MovieItem
 import com.vanjavier.flick.common.components.TopBar
+import com.vanjavier.flick.domain.model.Movie
 import com.vanjavier.flick.presentation.viewmodel.FavoriteMovieViewModel
 
 @Composable
 fun FavoritesScreen(
-    navController: NavController,
     viewModel: FavoriteMovieViewModel = hiltViewModel(),
+    onNavigateToDetails: (movie: Movie) -> Unit,
 ) {
+    // Listen to android lifecycle
+    // Update if added to Favorites or not on screen resume
+    ComposableLifecycle { _, event ->
+        if (event == Lifecycle.Event.ON_RESUME) {
+            viewModel.getAllFavoriteMovies()
+        }
+    }
+
     val state = viewModel.movieState.value
 
     Column(modifier = Modifier.fillMaxSize()) {
@@ -35,7 +45,7 @@ fun FavoritesScreen(
                 items(state.data) { movie ->
                     MovieItem(movie = movie,
                         onItemClick = {
-
+                            onNavigateToDetails(it)
                         },
                         onStarClick = {
                             if (it.isFavorite) {

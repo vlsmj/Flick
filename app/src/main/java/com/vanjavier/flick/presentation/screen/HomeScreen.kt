@@ -18,30 +18,39 @@ import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.ConstraintSet
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.navigation.NavController
+import androidx.lifecycle.Lifecycle
 import coil.compose.AsyncImage
 import com.vanjavier.flick.R
 import com.vanjavier.flick.common.Constants.FEATURED_GENRE
 import com.vanjavier.flick.common.Genre.*
+import com.vanjavier.flick.common.components.ComposableLifecycle
 import com.vanjavier.flick.common.components.IconText
 import com.vanjavier.flick.common.components.ListRowMovies
+import com.vanjavier.flick.domain.model.Movie
 import com.vanjavier.flick.presentation.viewmodel.MovieViewModel
 import com.vanjavier.flick.ui.theme.Black
 
 @Composable
 fun HomeScreen(
-    navController: NavController,
     randomFeaturedMovieIndex: Int,
     viewModel: MovieViewModel = hiltViewModel(),
+    onNavigateToDetails: (movie: Movie) -> Unit,
 ) {
-    val state = viewModel.movieState.value
+    // Listen to android lifecycle
+    // Update if added to Favorites or not on screen resume
+    ComposableLifecycle { _, event ->
+        if (event == Lifecycle.Event.ON_RESUME) {
+            viewModel.getAllMovies()
+        }
+    }
 
+    val state = viewModel.movieState.value
     val scrollState = rememberScrollState()
 
     val genres = listOf(
         COMEDY,
-        ACTION_ADVENTURE,
         SCI_FI_FANTASY,
+        ACTION_ADVENTURE,
         DRAMA,
         ROMANCE
     )
@@ -83,6 +92,7 @@ fun HomeScreen(
                     AsyncImage(model = featuredMovie.thumbnailUrlFeatured,
                         contentDescription = "image",
                         contentScale = ContentScale.Crop,
+                        placeholder = painterResource(id = R.drawable.ic_popcorn_placeholder),
                         error = painterResource(id = R.drawable.ic_popcorn_placeholder),
                         modifier = Modifier
                             .fillMaxWidth()
@@ -96,8 +106,20 @@ fun HomeScreen(
                             .layoutId("featuredButtons")
                             .background(brush = Brush.verticalGradient(colors = listOf(Color.Transparent, Black)))
                             .padding(16.dp)) {
-                        IconText(icon = painterResource(id = R.drawable.ic_baseline_star_unfavorite_24), text = "Favorite")
-                        IconText(icon = painterResource(id = R.drawable.ic_baseline_info_24), text = "Info")
+
+                        if (featuredMovie.isFavorite) {
+                            IconText(icon = painterResource(id = R.drawable.ic_baseline_star_favorite_24), text = "Favorite") {
+                                viewModel.unFavoriteMovie(featuredMovie.title)
+                            }
+                        } else {
+                            IconText(icon = painterResource(id = R.drawable.ic_baseline_star_unfavorite_24), text = "Favorite") {
+                                viewModel.favoriteMovie(featuredMovie.title)
+                            }
+                        }
+
+                        IconText(icon = painterResource(id = R.drawable.ic_baseline_info_24), text = "Info") {
+                            onNavigateToDetails(featuredMovie)
+                        }
                     }
                 }
             }
@@ -113,7 +135,7 @@ fun HomeScreen(
                     } else {
                         genre.name
                     }, moviesByGenre, onItemClick = {
-
+                        onNavigateToDetails(it)
                     }, onStarClick = {
                         if (it.isFavorite) {
                             viewModel.unFavoriteMovie(it.title)
