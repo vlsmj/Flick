@@ -18,6 +18,9 @@ interface MovieDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertMovies(movies: List<Movie>)
 
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertMovie(movie: Movie)
+
     @Query("UPDATE movie SET isFavorite = 1 WHERE id = :id")
     suspend fun favoriteMovie(id: Int)
 

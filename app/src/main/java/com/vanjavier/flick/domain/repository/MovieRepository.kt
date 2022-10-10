@@ -12,6 +12,8 @@ interface MovieRepository {
 
     suspend fun searchMovie(query: String): Flow<Resource<List<Movie>>>
 
+    suspend fun insertMovie(movie: Movie)
+
     suspend fun favoriteMovie(id: Int)
 
     suspend fun unFavoriteMovie(id: Int)
