@@ -46,6 +46,7 @@ fun SearchScreen(
         mutableStateOf(false)
     }
 
+    // Show keyboard on first enter.
     LaunchedEffect(Unit) {
         focusRequester.requestFocus()
         delay(100)

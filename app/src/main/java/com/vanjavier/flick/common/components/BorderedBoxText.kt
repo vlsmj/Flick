@@ -12,6 +12,11 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.vanjavier.flick.ui.theme.Gray
 
+/**
+ * A composable with border and radius corners with a text inside.
+ *
+ *  @param text inside the border.
+ */
 @Composable
 fun BorderedBoxText(text: String) {
     Box(modifier = Modifier

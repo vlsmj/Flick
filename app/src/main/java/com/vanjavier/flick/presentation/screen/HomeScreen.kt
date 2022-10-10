@@ -135,12 +135,14 @@ fun HomeScreen(
                 }
             }
 
+            // Get movies depending on genre
             genres.forEach { genre ->
                 val moviesByGenre = movies.filter {
                     it.genre == genre.name
                 }
 
                 if (moviesByGenre.isNotEmpty()) {
+                    // Change title or category if featured
                     ListRowMovies(if (genre.name == FEATURED_GENRE) {
                         stringResource(id = R.string.title_featured)
                     } else {

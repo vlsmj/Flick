@@ -17,6 +17,14 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import com.vanjavier.flick.common.BottomNavItem
 import com.vanjavier.flick.ui.theme.Black
 
+/**
+ * Bottom navigation used to switch between screens.
+ *
+ * @param items the number of items, or the screens inside the bottom navigation.
+ * @param navController controller needed for backstacks.
+ * @param modifier style and properties of the bottom navigation.
+ * @param onItemClick click listener for the items.
+ */
 @Composable
 fun BottomNavigationBar(
     items: List<BottomNavItem>,

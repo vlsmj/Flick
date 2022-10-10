@@ -19,6 +19,14 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
+/**
+ * Composable custom text field for getting user inputs.
+ *
+ * @param modifier style and properties of the text field.
+ * @param hint the text that shows before entering an input.
+ * @param query the user input entered.
+ * @param onValueChange input change listener for the text field.
+ */
 @Composable
 fun InputTextField(
     modifier: Modifier,

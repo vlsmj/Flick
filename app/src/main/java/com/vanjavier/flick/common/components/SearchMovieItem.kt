@@ -13,6 +13,12 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.vanjavier.flick.domain.model.Movie
 
+/**
+ * The single composable movie shown from search.
+ *
+ * @param movie the movie model that will provide the details.
+ * @param onItemClick click listener for this movie.
+ */
 @Composable
 fun SearchMovieItem(
     movie: Movie,

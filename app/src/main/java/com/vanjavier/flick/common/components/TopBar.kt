@@ -19,6 +19,13 @@ import androidx.compose.ui.unit.sp
 import com.vanjavier.flick.R
 import com.vanjavier.flick.ui.theme.Black
 
+/**
+ * Composable with logo or text and can redirect to Search.
+ *
+ * @param logo will be shown if provided.
+ * @param title will be shown if provided.
+ * @param onNavigateToSearch listener that navigates to Search when clicked.
+ */
 @Composable
 fun TopBar(
     logo: Painter? = null,

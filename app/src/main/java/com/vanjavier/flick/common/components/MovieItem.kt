@@ -13,6 +13,13 @@ import androidx.compose.ui.unit.dp
 import com.vanjavier.flick.R
 import com.vanjavier.flick.domain.model.Movie
 
+/**
+ * The single composable movie.
+ *
+ * @param movie the movie model that will provide the details.
+ * @param onItemClick click listener for this movie.
+ * @param onStarClick click listener for adding or removing this as a favorite movie.
+ */
 @Composable
 fun MovieItem(
     movie: Movie,

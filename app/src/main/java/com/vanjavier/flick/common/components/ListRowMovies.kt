@@ -14,6 +14,14 @@ import androidx.compose.ui.unit.dp
 import com.vanjavier.flick.common.Constants.LIST_LIMIT_SIZE
 import com.vanjavier.flick.domain.model.Movie
 
+/**
+ * Composable horizontal list for the movies.
+ *
+ * @param category the title or category of the list.
+ * @param movies list of movies.
+ * @param onItemClick click listener for the movies.
+ * @param onStarClick click listener for adding or removing as a favorite movie.
+ */
 @Composable
 fun ListRowMovies(
     category: String,

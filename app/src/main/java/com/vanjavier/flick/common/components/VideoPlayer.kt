@@ -27,6 +27,12 @@ import com.google.android.exoplayer2.ui.StyledPlayerView
 import com.vanjavier.flick.R
 import com.vanjavier.flick.domain.model.Movie
 
+/**
+ * The video player that will play the movie's trailer using ExoPlayer.
+ *
+ * @param movie the movie model that will provide the details.
+ * @param onClose click listener for exiting the movie details screen.
+ */
 @Composable
 fun VideoPlayer(
     movie: Movie,

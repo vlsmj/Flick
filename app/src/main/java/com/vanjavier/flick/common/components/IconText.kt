@@ -12,6 +12,14 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.unit.sp
 
+/**
+ * Composable for an icon above and text beneath it.
+ *
+ * @param modifier style and properties of the composable.
+ * @param icon the icon provided.
+ * @param text the text provided.
+ * @param onClick click listener for the icons with text.
+ */
 @Composable
 fun IconText(
     modifier: Modifier = Modifier,

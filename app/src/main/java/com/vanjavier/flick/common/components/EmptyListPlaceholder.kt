@@ -13,6 +13,9 @@ import androidx.compose.ui.unit.sp
 import com.vanjavier.flick.R
 import com.vanjavier.flick.ui.theme.DarkerGray
 
+/**
+ * Empty composable placeholder for empty lists.
+ */
 @Composable
 fun EmptyListPlaceholder() {
     Column(verticalArrangement = Arrangement.Center,

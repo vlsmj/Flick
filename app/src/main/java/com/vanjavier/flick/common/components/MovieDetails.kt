@@ -21,6 +21,12 @@ import com.vanjavier.flick.R
 import com.vanjavier.flick.domain.model.Movie
 import com.vanjavier.flick.presentation.viewmodel.MovieDetailsViewModel
 
+/**
+ * Composable for showing the details of the movie.
+ *
+ * @param movie the movie model that will provide the details.
+ * @param viewModel the ViewModel for this composable.
+ */
 @Composable
 fun MovieDetails(
     movie: Movie,
