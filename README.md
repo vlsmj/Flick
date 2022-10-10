@@ -12,6 +12,7 @@ Flick is a movie search application that uses MVVM + Repository + Room with the 
 - Search movies that are also not saved yet in the local database and add can be added to favorites.
 - Video player that plays the trailer of the movies.
 - Placeholder of thumbnails if the images are not loaded properly.
+- Show date and time toast message when the user last visited.
 - Animated JSON icon file for the splash screen.
 
 ## Visuals
