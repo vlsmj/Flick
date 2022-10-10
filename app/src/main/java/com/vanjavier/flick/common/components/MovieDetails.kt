@@ -53,13 +53,17 @@ fun MovieDetails(
                     IconText(icon = painterResource(id = R.drawable.ic_baseline_star_favorite_24), text = "Favorite",
                         modifier = Modifier.weight(0.2f)) {
                         movieDetails.value = movieDetails.value.copy(isFavorite = false)
-                        viewModel.unFavoriteMovie(id)
+                        viewModel.insertMovie(this@run.apply {
+                            isFavorite = false
+                        })
                     }
                 } else {
                     IconText(icon = painterResource(id = R.drawable.ic_baseline_star_unfavorite_24), text = "Favorite",
                         modifier = Modifier.weight(0.2f)) {
                         movieDetails.value = movieDetails.value.copy(isFavorite = true)
-                        viewModel.favoriteMovie(id)
+                        viewModel.insertMovie(this@run.apply {
+                            isFavorite = true
+                        })
                     }
                 }
             }

@@ -6,6 +6,7 @@ import com.vanjavier.flick.common.util.UiText
 import com.vanjavier.flick.data.datasource.MovieDao
 import com.vanjavier.flick.data.remote.ITunesApi
 import com.vanjavier.flick.data.remote.dto.toMovie
+import com.vanjavier.flick.domain.model.Movie
 import com.vanjavier.flick.domain.repository.MovieRepository
 import kotlinx.coroutines.flow.flow
 import retrofit2.HttpException
@@ -81,5 +82,9 @@ class MovieRepositoryImpl @Inject constructor(
         } catch (e: IOException) {
             emit(Resource.Error(UiText.StringResource(R.string.error_io_exception_message)))
         }
+    }
+
+    override suspend fun insertMovie(movie: Movie) {
+        movieDao.insertMovie(movie)
     }
 }
