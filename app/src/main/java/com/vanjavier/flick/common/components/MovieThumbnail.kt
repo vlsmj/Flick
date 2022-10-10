@@ -12,6 +12,12 @@ import com.vanjavier.flick.R
 import com.vanjavier.flick.domain.model.Movie
 import com.vanjavier.flick.ui.theme.Gray
 
+/**
+ * Composable for the movie's image fetched from URI using Coil.
+ *
+ * @param movie the movie model that will provide the details.
+ * @param onItemClick click listener for this thumbnail.
+ */
 @Composable
 fun MovieThumbnail(
     movie: Movie,

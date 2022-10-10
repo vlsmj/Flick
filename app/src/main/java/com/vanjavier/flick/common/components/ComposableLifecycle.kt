@@ -7,6 +7,12 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.LifecycleOwner
 
+/**
+ * Composable extension that listens to android lifecycle.
+ *
+ * @param lifeCycleOwner the current lifecycle.
+ * @param onEvent the kind of event that triggers.
+ */
 @Composable
 fun ComposableLifecycle(
     lifeCycleOwner: LifecycleOwner = LocalLifecycleOwner.current,

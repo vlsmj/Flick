@@ -13,6 +13,7 @@ class MovieDetailsViewModel @Inject constructor(
     private val useCases: UseCases,
 ) : ViewModel() {
 
+    // Insert new movie instead if not yet saved in the database
     fun insertMovie(movie: Movie) {
         viewModelScope.launch {
             useCases.insertMovieUseCase(movie)
